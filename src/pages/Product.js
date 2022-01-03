@@ -112,6 +112,11 @@ const Button = styled.button`
   &:hover {
     background-color: #f8f4f4;
   }
+  @media only screen and (max-width: 600px) {
+    padding: 0px 20px;
+    font-weight: 200;
+    margin-left: 30px;
+  }
 `;
 
 const Price = styled.h3`
@@ -129,7 +134,7 @@ const InfoContainer = styled.div`
 `;
 
 const Image = styled.img`
-  //   width: 100%;
+  width: 100%;
   //   height: 90vh;
 `;
 const ImgContainer = styled.div`
@@ -139,6 +144,11 @@ const Wrapper = styled.div`
   padding: 50px;
   flex: 1;
   display: flex;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    padding: 0px;
+    margin-top: 60px;
+  }
 `;
 const Container = styled.div``;
 export default Product;

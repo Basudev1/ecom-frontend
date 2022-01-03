@@ -4,7 +4,7 @@ import Product from "./pages/Product";
 import Footer from "./components/Footer";
 function App() {
   // return <Home />;
-  return <Footer />;
+  return <Product />;
 }
 
 export default App;
