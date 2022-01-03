@@ -11,60 +11,76 @@ import React from "react";
 import styled from "styled-components";
 function Footer() {
   return (
-    <Container>
-      <Left>
-        <Logo>DevShop</Logo>
-        <Description>
-          This is a Shop dedicated to Developers, Especially this shop is built
-          by a Developer for the Developers, This Shop Not only for dev.to fans,
-          also a Showcase for Mongodb Hackathon
-        </Description>
-        <SocialContainer>
-          <SocialIcon>
-            <Facebook />
-          </SocialIcon>
-          <SocialIcon>
-            <Instagram />
-          </SocialIcon>
-          <SocialIcon>
-            <Twitter />
-          </SocialIcon>
-          <SocialIcon>
-            <Pinterest />
-          </SocialIcon>
-        </SocialContainer>
-      </Left>
-      <Center>
-        <Title>Useful Links</Title>
-        <List>
-          <ListItem>Home</ListItem>
-          <ListItem>My Cart</ListItem>
-          <ListItem>Order History</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Privacy Policy</ListItem>
-          <ListItem>Terms and Cond.</ListItem>
-        </List>
-      </Center>
-      <Right>
-        <Title>Contact Us</Title>
-        <ContactItem>
-          <Room style={{ marginRight: "10px" }} />
-          1234 dev.to University
-        </ContactItem>
-        <ContactItem>
-          <Phone style={{ marginRight: "10px" }} /> +9100000000
-        </ContactItem>
-        <ContactItem>
-          <Email style={{ marginRight: "10px" }} /> contact@contact.nothing
-        </ContactItem>
-      </Right>
-    </Container>
+    <>
+      <Container>
+        <Left>
+          <Logo>DevShop</Logo>
+          <Description>
+            This is a Shop dedicated to Developers, Especially this shop is
+            built by a Developer for the Developers, This Shop Not only for
+            dev.to fans, also a Showcase for Mongodb Hackathon
+          </Description>
+          <SocialContainer>
+            <SocialIcon>
+              <Facebook />
+            </SocialIcon>
+            <SocialIcon>
+              <Instagram />
+            </SocialIcon>
+            <SocialIcon>
+              <Twitter />
+            </SocialIcon>
+            <SocialIcon>
+              <Pinterest />
+            </SocialIcon>
+          </SocialContainer>
+        </Left>
+        <Center>
+          <Title>Useful Links</Title>
+          <List>
+            <ListItem>Home</ListItem>
+            <ListItem>My Cart</ListItem>
+            <ListItem>Order History</ListItem>
+            <ListItem>Wishlist</ListItem>
+            <ListItem>Privacy Policy</ListItem>
+            <ListItem>Terms and Cond.</ListItem>
+          </List>
+        </Center>
+        <Right>
+          <Title>Contact Us</Title>
+          <ContactItem>
+            <Room style={{ marginRight: "10px" }} />
+            1234 dev.to University
+          </ContactItem>
+          <ContactItem>
+            <Phone style={{ marginRight: "10px" }} /> +9100000000
+          </ContactItem>
+          <ContactItem>
+            <Email style={{ marginRight: "10px" }} /> contact@contact.nothing
+          </ContactItem>
+        </Right>
+      </Container>
+      <p
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        All Rights Reserved
+        <span style={{ marginLeft: "10px" }}> &copy; {year}</span>
+      </p>
+    </>
   );
 }
 
+const d = new Date();
+let year = d.getFullYear();
 const Container = styled.div`
   flex: 1;
   display: flex;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 const Logo = styled.h1``;
 const Description = styled.p`
