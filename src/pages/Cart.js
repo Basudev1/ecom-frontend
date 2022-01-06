@@ -4,8 +4,10 @@ import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 
 function Cart() {
+  const cart = useSelector((state) => state.cart);
   return (
     <Container>
       <Announcement />
@@ -22,33 +24,42 @@ function Cart() {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://rukminim1.flixcart.com/image/880/1056/kbtp0280/shoe/c/k/k/gm1251-43-good-minar-black-original-imaft34ej4zx2z63.jpeg?q=50" />
-                <Detail>
-                  <ProductName>
-                    <b>Product:</b>Product Detail
-                  </ProductName>
-                  <ProductId>
-                    <b>ProductId:</b>1233343435
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Product Size:</b>M
-                  </ProductSize>
-                </Detail>
-              </ProductDetail>
-              <PriceDetails>
-                <ProductAmountContainer>
-                  <Add style={{ cursor: "pointer" }} />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove style={{ cursor: "pointer" }} />
-                </ProductAmountContainer>
-                <ProductPrice> $ 20</ProductPrice>
-              </PriceDetails>
-            </Product>
-            <Hr />
-            <Product>
+            {cart.products.map((product) => (
+              <>
+                <Product>
+                  <ProductDetail>
+                    <Image src={product.img} />
+                    <Detail>
+                      <ProductName>
+                        <b>Product:</b> {product.title}
+                      </ProductName>
+                      <ProductId>
+                        <b>ProductId:</b> {product._id}
+                      </ProductId>
+                      <ProductColor color={product.color} />
+                      <ProductSize>
+                        <b>Product Size: </b>
+                        {product.size}
+                      </ProductSize>
+                    </Detail>
+                  </ProductDetail>
+                  <PriceDetails>
+                    <ProductAmountContainer>
+                      <Add style={{ cursor: "pointer" }} />
+                      <ProductAmount>{product.quantity}</ProductAmount>
+                      <Remove style={{ cursor: "pointer" }} />
+                    </ProductAmountContainer>
+                    <ProductPrice>
+                      {" "}
+                      $ {product.price * product.quantity}
+                    </ProductPrice>
+                  </PriceDetails>
+                </Product>
+                <Hr />
+              </>
+            ))}
+
+            {/* <Product>
               <ProductDetail>
                 <Image src="https://rukminim1.flixcart.com/image/880/1056/k6jnfrk0/shoe/z/x/9/171-8-pexlo-black-tan-original-imafzqbthfzkqv76.jpeg?q=50" />
                 <Detail>
@@ -72,14 +83,14 @@ function Cart() {
                 </ProductAmountContainer>
                 <ProductPrice> $ 20</ProductPrice>
               </PriceDetails>
-            </Product>
+            </Product> */}
           </Info>
 
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 40</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estamited Shipping</SummaryItemText>
@@ -91,7 +102,7 @@ function Cart() {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 40</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>
