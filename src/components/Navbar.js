@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 // import SearchIcon from "@mui/icons-material/Search";
 import { Search, Menu, Close } from "@material-ui/icons";
 // import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
@@ -25,7 +26,9 @@ function Navbar() {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>DevShop</Logo>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Logo>DevShop</Logo>
+          </Link>
         </Center>
         <Right>
           <RegLog>
@@ -216,6 +219,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
+  text-decoration: none;
 `;
 const Right = styled.div`
   flex: 1;
