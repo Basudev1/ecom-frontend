@@ -7,10 +7,13 @@ import { Search, Menu, Close } from "@material-ui/icons";
 // import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Badge from "@material-ui/core/Badge";
 import { ShoppingBagOutlined } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const quantity = useSelector((state) => state.cart.quantity);
+  console.log(quantity);
   return (
     <Container>
       <Wrapper show={showSearch}>
@@ -32,16 +35,22 @@ function Navbar() {
         </Center>
         <Right>
           <RegLog>
-            <MenuItem>Register</MenuItem>
-            <MenuItem>Login</MenuItem>
+            <Link to="/register">
+              <MenuItem>Register</MenuItem>
+            </Link>
+            <Link to="/register">
+              <MenuItem>Login</MenuItem>
+            </Link>
           </RegLog>
           <Icon>
             <Search onClick={() => setShowSearch(true)} />
           </Icon>
           <MenuItem>
-            <Badge badgeContent={4} color="primary">
-              <ShoppingBagOutlined />
-            </Badge>
+            <Link to="/cart">
+              <Badge badgeContent={quantity} color="primary">
+                <ShoppingBagOutlined />
+              </Badge>
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>

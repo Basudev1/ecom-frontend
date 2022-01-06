@@ -7,6 +7,8 @@ import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../requestMethods";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 function Product() {
   const loaction = useLocation();
   const id = loaction.pathname.split("/")[2];
@@ -14,13 +16,14 @@ function Product() {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
       try {
         const res = await publicRequest.get("/products/find/" + id);
         setProduct(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +39,9 @@ function Product() {
     }
   };
 
-  const handleAddToCart = () => {};
+  const handleAddToCart = () => {
+    dispatch(addProduct({ ...product, quantity, color, size }));
+  };
   return (
     <Container>
       <Announcement />

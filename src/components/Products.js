@@ -16,7 +16,7 @@ function Products({ cat, filters, sort }) {
             : "http://localhost:3000/api/v1/products"
         );
         setProducts(res.data["products"]);
-        console.log(res.data["products"]);
+        // console.log(res.data["products"]);
       } catch (error) {
         console.log(error);
       }
