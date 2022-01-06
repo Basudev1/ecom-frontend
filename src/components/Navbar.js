@@ -12,7 +12,7 @@ function Navbar() {
   const [showSearch, setShowSearch] = useState(false);
   return (
     <Container>
-      <Wrapper>
+      <Wrapper show={showSearch}>
         <Left>
           <Icon>
             <Menu onClick={() => setBurgerStatus(true)} />
@@ -69,8 +69,9 @@ function Navbar() {
           placeholder="Search Products"
           style={{
             width: "70%",
-            marginLeft: "10px",
+            marginLeft: "15px",
             height: "50px",
+            padding: "25px",
           }}
         />
         <CustomClose onClick={() => setShowSearch(false)} />
@@ -129,6 +130,10 @@ const SearchIcon = styled.div`
     display: ${(props) => (props.show ? "flex" : "none")};
     align-items: center;
     justify-content: center;
+    margin-top: 10px;
+    position: fixed;
+    width: 100%;
+    transform: all 0.5s ease-out;
   }
 `;
 
@@ -149,7 +154,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 5px 10px;
   margin: 0 15px;
-  display: flex;
+  // display: flex;
+  display: ${(props) => (props.show ? "none" : "flex")};
   align-items: center;
   justify-content: space-between;
 `;

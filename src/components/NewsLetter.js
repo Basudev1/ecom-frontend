@@ -29,12 +29,20 @@ const Container = styled.div`
 `;
 const Title = styled.h1`
   font-size: 70px;
+  @media only screen and (max-width: 600px) {
+    font-size: 40px;
+  }
 `;
 const Description = styled.p`
   font-size: 24px;
   font-weight: 300;
   margin-bottom: 20px;
   text-align: center;
+  @media only screen and (max-width: 600px) {
+    font-size: 20px;
+    font-weight: 200;
+    margin: 10px;
+  }
 `;
 const Input = styled.input`
   border: none;
@@ -52,7 +60,7 @@ const InputContainer = styled.div`
 const Button = styled.button`
   flex: 1;
   border: none;
-  background-color: teal;
+  background-color: black;
   color: white;
 `;
 

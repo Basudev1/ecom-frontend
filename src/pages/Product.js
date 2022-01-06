@@ -60,10 +60,14 @@ const FilterContainer = styled.div`
   justify-content: space-between;
   width: 50%;
   margin: 30px 0px;
+  // // @media only screen and (max-width: 600px) {
+  //   // margin: 20px;
+  // }
 `;
 const Filter = styled.div`
   display: flex;
   align-items: center;
+  margin: 10px;
 `;
 const FilterTitle = styled.span`
   font-size: 20px;
@@ -131,6 +135,9 @@ const Title = styled.h1``;
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0 50px;
+  @media only screen and (max-width: 600px) {
+    margin-bottom: 40px;
+  }
 `;
 
 const Image = styled.img`

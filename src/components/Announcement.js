@@ -4,7 +4,8 @@ function Announcement() {
   return (
     <Container>
       <p>
-        Due to COVID-19 the DevShop is experiencing slight delays in shipping.
+        Please Do not enter your Payment Details here. This site is only for
+        dev.to Mongodb Hackathon Only
       </p>
     </Container>
   );

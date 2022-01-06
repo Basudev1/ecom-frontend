@@ -17,8 +17,10 @@ const Container = styled.div`
   display: flex;
   // padding: 20px;
   justify-content: space-between;
-  @media only screen and (max-width: 400px) {
-    margin-top: 60px;
+  @media only screen and (max-width: 600px) {
+    margin: 10px;
+    // display: flex;
+    flex-direction: column;
   }
 `;
 export default Categories;

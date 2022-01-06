@@ -66,8 +66,8 @@ function Footer() {
           justifyContent: "center",
         }}
       >
-        All Rights Reserved
-        <span style={{ marginLeft: "10px" }}> &copy; {year}</span>
+        <span style={{ marginRight: "10px" }}> &copy; {year}</span> Made With
+        &hearts; By Basudev
       </p>
     </>
   );
@@ -128,6 +128,9 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  @media only screen and (max-width: 600px) {
+    background-color: #fcf5f5;
+  }
 `;
 
 const ContactItem = styled.div`

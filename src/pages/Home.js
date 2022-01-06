@@ -13,10 +13,10 @@ function Home() {
       <Announcement />
       <Navbar />
       {/* <SliderP /> */}
-      {/* <Categories /> */}
-      {/* <Products /> */}
-      {/* <NewsLetter /> */}
-      {/* <Footer /> */}
+      <Categories />
+      <Products />
+      <NewsLetter />
+      <Footer />
     </>
   );
 }

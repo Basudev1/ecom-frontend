@@ -15,14 +15,18 @@ function CatItem({ item }) {
 const Container = styled.div`
   flex: 1;
   margin: 3px;
-  height: 70vh;
+  // height: 50vh;
   z-index: 1;
+  // @media only screen and (max-width: 400px) {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
 `;
 const Image = styled.img`
   width: 100%;
   height: 100%;
   @media only screen and (max-width: 400px) {
-    height: 50%;
+    height: 30vh;
   }
   object-fit: cover;
 `;
