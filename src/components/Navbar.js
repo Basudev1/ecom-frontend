@@ -13,7 +13,7 @@ function Navbar() {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const quantity = useSelector((state) => state.cart.quantity);
-  console.log(quantity);
+  // console.log(quantity);
   return (
     <Container>
       <Wrapper show={showSearch}>

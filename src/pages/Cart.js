@@ -1,13 +1,37 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import { userRequest } from "../requestMethods";
+import { useNavigate } from "react-router-dom";
 
+const KEY = process.env.REACT_APP_STRIPE_KEY;
 function Cart() {
   const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  let navigate = useNavigate();
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const response = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100,
+        });
+        navigate(`/success/`, { data: response.data });
+        console.log(stripeToken);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    stripeToken && cart.total >= 1 && makeRequest();
+  }, [stripeToken, cart.total, navigate]);
   return (
     <Container>
       <Announcement />
@@ -26,7 +50,7 @@ function Cart() {
           <Info>
             {cart.products.map((product) => (
               <>
-                <Product>
+                <Product key={product._id}>
                   <ProductDetail>
                     <Image src={product.img} />
                     <Detail>
@@ -50,7 +74,6 @@ function Cart() {
                       <Remove style={{ cursor: "pointer" }} />
                     </ProductAmountContainer>
                     <ProductPrice>
-                      {" "}
                       $ {product.price * product.quantity}
                     </ProductPrice>
                   </PriceDetails>
@@ -104,7 +127,34 @@ function Cart() {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+
+            <StripeCheckout
+              name="DevShop." // the pop-in header title
+              description={`Your Total is $${cart.total}`} // the pop-in header subtitle
+              image="https://stripe.com/img/documentation/checkout/marketplace.png" // the pop-in header image (default none)
+              // label="Buy the Thing" // text inside the Stripe button
+              // panelLabel="Give Money" // prepended to the amount in the bottom pay button
+              amount={cart.total * 100} // cents
+              currency="INR"
+              stripeKey={KEY}
+              shippingAddress
+              billingAddress
+              token={onToken} // submit callback
+              // opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
+              // closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)
+              // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
+              // you are using multiple stripe keys
+              // reconfigureOnUpdate={false}
+              // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`
+              // useful if you're using React-Tap-Event-Plugin
+              // triggerEvent="onTouchTap"
+            >
+              {/* <button className="btn btn-primary">
+    Use your own child component, which gets wrapped in whatever
+    component you pass into as "ComponentClass" (defaults to span)
+  </button> */}
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
