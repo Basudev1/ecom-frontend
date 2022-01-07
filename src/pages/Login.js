@@ -1,17 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { login } from "../redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { isFetching, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(dispatch, { email, password });
+  };
   return (
     <Container>
       <Wrapper>
         <Title>Login</Title>
         <Form>
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Button>Login</Button>
+          <Input
+            placeholder="email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            placeholder="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button onClick={handleLogin} disabled={isFetching}>
+            Login
+          </Button>
+          {error && <Error>Something went wrong</Error>}
         </Form>
         <Links>
-          <Link to="/asf">Forgot Password</Link>
+          <Link to="/">Forgot Password</Link>
           <Link to="/register">Create an Account</Link>
         </Links>
       </Wrapper>
@@ -19,7 +41,11 @@ function Login() {
   );
 }
 
-const Link = styled.a``;
+const Error = styled.span`
+  color: red;
+`;
+
+// const Link = styled.a``;
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -68,6 +94,10 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-top: 10px;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
 `;
 
 export default Login;

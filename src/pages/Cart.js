@@ -137,8 +137,8 @@ function Cart() {
               amount={cart.total * 100} // cents
               currency="INR"
               stripeKey={KEY}
-              shippingAddress
-              billingAddress
+              // shippingAddress
+              // billingAddress
               token={onToken} // submit callback
               // opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
               // closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)

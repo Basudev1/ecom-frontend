@@ -10,6 +10,7 @@ import { ShoppingBagOutlined } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 
 function Navbar() {
+  const user = useSelector((state) => state.user.currentUser);
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const quantity = useSelector((state) => state.cart.quantity);
@@ -34,14 +35,16 @@ function Navbar() {
           </Link>
         </Center>
         <Right>
-          <RegLog>
-            <Link to="/register">
-              <MenuItem>Register</MenuItem>
-            </Link>
-            <Link to="/register">
-              <MenuItem>Login</MenuItem>
-            </Link>
-          </RegLog>
+          {!user && (
+            <RegLog>
+              <Link to="/register">
+                <MenuItem>Register</MenuItem>
+              </Link>
+              <Link to="/login">
+                <MenuItem>Login</MenuItem>
+              </Link>
+            </RegLog>
+          )}
           <Icon>
             <Search onClick={() => setShowSearch(true)} />
           </Icon>
@@ -61,20 +64,24 @@ function Navbar() {
         </CloseWrapper>
 
         <li>
-          <a href="#">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="#">Cart</a>
+          <Link to="/cart">Cart</Link>
         </li>
         <li>
-          <a href="#">Categories</a>
+          <Link to="/products">Categories</Link>
         </li>
-        <li>
-          <a href="#">Login</a>
-        </li>
-        <li>
-          <a href="#">Register</a>
-        </li>
+        {!user && (
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+          </>
+        )}
       </BurgerNav>
       <SearchIcon show={showSearch}>
         <Input
