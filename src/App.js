@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import Success from "./pages/Success";
 function App() {
   // const user = useSelector((state) => state.user.currentUser.token);
-  const user = localStorage.getItem("token");
+  const user = localStorage.getItem("Authorization");
 
   return (
     <BrowserRouter>

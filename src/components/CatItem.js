@@ -8,7 +8,7 @@ function CatItem({ item }) {
         <Image src={item.img} />
         <Info>
           <Title>{item.title}</Title>
-          <Button>Shop Now</Button>
+          {/* <Button>Shop Now</Button> */}
         </Info>
       </Link>
     </Container>
@@ -17,7 +17,7 @@ function CatItem({ item }) {
 
 const Container = styled.div`
   flex: 1;
-  margin: 5px;
+  margin: 10px;
   // height: 50vh;
   z-index: 1;
   // @media only screen and (max-width: 400px) {
@@ -27,7 +27,7 @@ const Container = styled.div`
 `;
 const Image = styled.img`
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   @media only screen and (max-width: 400px) {
     height: 30vh;
   }

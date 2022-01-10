@@ -1,22 +1,22 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/XsdmR2c/1.png",
-    title: "SUMMER SALE",
+    img: "https://i.ibb.co/N7MMx2x/men.png",
+    title: "MEN",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "f5fafd",
   },
   {
     id: 2,
     img: "https://i.ibb.co/DG69bQ4/2.png",
-    title: "AUTUMN COLLECTION",
+    title: "WOMEN",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "fcf1ed",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/cXFnLLV/3.png",
-    title: "LOUNGEWEAR LOVE",
+    img: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/8063367/2018/12/26/db444c48-c8aa-4fc3-92b4-02b66f4643dd1545820130218-Armani-Exchange-Men-Black-Analogue-Watch-6211545820128996-1.jpg",
+    title: "GADGETS",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "fbf0f4",
   },
@@ -25,21 +25,21 @@ export const sliderItems = [
 export const categories = [
   {
     id: 1,
-    img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    title: "SHIRT STYLE!",
-    cat: "women",
+    img: "https://i.ibb.co/N7MMx2x/men.png",
+    title: "MEN",
+    cat: "men",
   },
   {
     id: 2,
-    img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    title: "LOUNGEWEAR LOVE",
-    cat: "coat",
+    img: "https://www.pngkit.com/png/detail/90-904849_cute-anime-girl-png-banner-download-cute-anime.png",
+    title: "WOMEN",
+    cat: "women",
   },
   {
     id: 3,
-    img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    title: "LIGHT JACKETS",
-    cat: "jeans",
+    img: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/8063367/2018/12/26/db444c48-c8aa-4fc3-92b4-02b66f4643dd1545820130218-Armani-Exchange-Men-Black-Analogue-Watch-6211545820128996-1.jpg",
+    title: "Gadgets",
+    cat: "gadgets",
   },
 ];
 

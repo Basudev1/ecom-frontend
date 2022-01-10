@@ -12,7 +12,7 @@ import { logout } from "../redux/userRedux";
 
 function Navbar() {
   // const users = useSelector((state) => state.user.currentUser.token);
-  const user = localStorage.getItem("token");
+  const user = localStorage.getItem("Authorization");
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const quantity = useSelector((state) => state.cart.quantity);
@@ -21,7 +21,8 @@ function Navbar() {
 
   const handleLogout = () => {
     console.log("Logout clicked");
-    localStorage.removeItem("token");
+    localStorage.removeItem("Authorization");
+    localStorage.removeItem("userId");
     dispatch(logout());
     window.location.reload();
   };

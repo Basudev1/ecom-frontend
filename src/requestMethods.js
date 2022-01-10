@@ -6,7 +6,7 @@ const BASE_URL = "http://localhost:3000/api/v1/";
 
 // console.log(localStorage.getItem("token"));
 
-let Token = localStorage.getItem("token");
+const Token = localStorage.getItem("Authorization");
 
 // if (localStorage.getItem("persist:root")) {
 //   Token = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user)
@@ -23,12 +23,12 @@ let Token = localStorage.getItem("token");
 //         .currentUser.token;
 
 // const Token = "";
-console.log(Token);
+// console.log(Token);
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
 });
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  headers: { token: `${Token}` },
+  headers: { Authorization: `${Token}` },
 });
