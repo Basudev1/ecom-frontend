@@ -3,20 +3,29 @@ import React, { useEffect, useState } from "react";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Add, Close, Remove } from "@material-ui/icons";
-import { useSelector } from "react-redux";
+import { Add, Remove } from "@material-ui/icons";
+import { useSelector, useDispatch } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../requestMethods";
 import { Link, useNavigate } from "react-router-dom";
-
+import { removeProduct } from "../redux/cartRedux";
 const KEY = process.env.REACT_APP_STRIPE_KEY;
 function Cart() {
+  const user = localStorage.getItem("Authorization");
   const cart = useSelector((state) => state.cart);
+  const quantity = useSelector((state) => state.cart.quantity);
   const [stripeToken, setStripeToken] = useState(null);
   let navigate = useNavigate();
   const onToken = (token) => {
     setStripeToken(token);
   };
+
+  const product = cart.products.map((x) => ({
+    productid: x._id,
+    quantity: x.quantity,
+  }));
+  // console.log(product);
+
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -24,14 +33,27 @@ function Cart() {
           tokenId: stripeToken.id,
           amount: cart.total * 100,
         });
+        const confirm = await userRequest.post("/orders", {
+          userId: localStorage.getItem("userId"),
+          products: product,
+          amount: cart.total,
+          address: "Dev.to",
+        });
         navigate(`/success/`, { data: response.data });
-        console.log(stripeToken);
+        // console.log(stripeToken);
       } catch (error) {
         console.log(error);
       }
     };
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, navigate]);
+  const dispatch = useDispatch();
+  const removeItem = (p) => {
+    const product = cart.products.find((product) => product._id === p);
+    // dispatch(removeProduct({ p, quantity }));
+    console.log(product._id);
+  };
+
   return (
     <Container>
       <Announcement />
@@ -45,7 +67,7 @@ function Cart() {
             </Link>
           </TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({quantity})</TopText>
             <TopText>Your Wishlist(0)</TopText>
           </TopTexts>
           <TopButton type="filled">Check Out Now</TopButton>
@@ -72,7 +94,19 @@ function Cart() {
                     </Detail>
                   </ProductDetail>
                   <PriceDetails>
-                    <Close style={{ color: "red" }} />
+                    <>
+                      <span
+                        style={{
+                          backgroundColor: "black",
+                          color: "white",
+                          padding: 3,
+                          cursor: "pointer",
+                        }}
+                        onClick={() => removeItem(product._id)}
+                      >
+                        Remove Item
+                      </span>
+                    </>
                     <ProductAmountContainer>
                       <Add style={{ cursor: "pointer" }} />
                       <ProductAmount>{product.quantity}</ProductAmount>
@@ -86,35 +120,21 @@ function Cart() {
                 <Hr />
               </>
             ))}
-
-            {/* <Product>
-              <ProductDetail>
-                <Image src="https://rukminim1.flixcart.com/image/880/1056/k6jnfrk0/shoe/z/x/9/171-8-pexlo-black-tan-original-imafzqbthfzkqv76.jpeg?q=50" />
-                <Detail>
-                  <ProductName>
-                    <b>Product:</b>Cheviti Teen
-                  </ProductName>
-                  <ProductId>
-                    <b>ProductId:</b>1233343435
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Product Size:</b>M
-                  </ProductSize>
-                </Detail>
-              </ProductDetail>
-              <PriceDetails>
-                <ProductAmountContainer>
-                  <Add style={{ cursor: "pointer" }} />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove style={{ cursor: "pointer" }} />
-                </ProductAmountContainer>
-                <ProductPrice> $ 20</ProductPrice>
-              </PriceDetails>
-            </Product> */}
           </Info>
 
           <Summary>
+            {user === null && (
+              <span
+                style={{
+                  display: "flex",
+                  marginTop: 10,
+                  fontWeight: "bold",
+                  color: "red",
+                }}
+              >
+                Login to checkout
+              </span>
+            )}
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
@@ -158,7 +178,7 @@ function Cart() {
     Use your own child component, which gets wrapped in whatever
     component you pass into as "ComponentClass" (defaults to span)
   </button> */}
-              <Button>CHECKOUT NOW</Button>
+              <Button disabled={user === null}>CHECKOUT NOW</Button>
             </StripeCheckout>
           </Summary>
         </Bottom>
