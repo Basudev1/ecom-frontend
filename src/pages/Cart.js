@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Add, Remove } from "@material-ui/icons";
+import { Add, Close, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../requestMethods";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const KEY = process.env.REACT_APP_STRIPE_KEY;
 function Cart() {
@@ -39,7 +39,11 @@ function Cart() {
       <Wrapper>
         <Title>Your Bag</Title>
         <Top>
-          <TopButton>Continue Shopping</TopButton>
+          <TopButton>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              Continue Shopping
+            </Link>
+          </TopButton>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist(0)</TopText>
@@ -68,13 +72,14 @@ function Cart() {
                     </Detail>
                   </ProductDetail>
                   <PriceDetails>
+                    <Close style={{ color: "red" }} />
                     <ProductAmountContainer>
                       <Add style={{ cursor: "pointer" }} />
                       <ProductAmount>{product.quantity}</ProductAmount>
                       <Remove style={{ cursor: "pointer" }} />
                     </ProductAmountContainer>
                     <ProductPrice>
-                      $ {product.price * product.quantity}
+                      ₹ {product.price * product.quantity}
                     </ProductPrice>
                   </PriceDetails>
                 </Product>
@@ -113,24 +118,24 @@ function Cart() {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estamited Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemPrice>₹ 149</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemPrice>₹ 149</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
             </SummaryItem>
 
             <StripeCheckout
               name="DevShop." // the pop-in header title
-              description={`Your Total is $${cart.total}`} // the pop-in header subtitle
+              description={`Your Total is ₹${cart.total}`} // the pop-in header subtitle
               image="https://stripe.com/img/documentation/checkout/marketplace.png" // the pop-in header image (default none)
               // label="Buy the Thing" // text inside the Stripe button
               // panelLabel="Give Money" // prepended to the amount in the bottom pay button

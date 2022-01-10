@@ -7,14 +7,24 @@ import { Search, Menu, Close } from "@material-ui/icons";
 // import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Badge from "@material-ui/core/Badge";
 import { ShoppingBagOutlined } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/userRedux";
 
 function Navbar() {
-  const user = useSelector((state) => state.user.currentUser);
+  // const users = useSelector((state) => state.user.currentUser.token);
+  const user = localStorage.getItem("token");
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const quantity = useSelector((state) => state.cart.quantity);
   // console.log(quantity);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    console.log("Logout clicked");
+    localStorage.removeItem("token");
+    dispatch(logout());
+    window.location.reload();
+  };
   return (
     <Container>
       <Wrapper show={showSearch}>
@@ -35,7 +45,7 @@ function Navbar() {
           </Link>
         </Center>
         <Right>
-          {!user && (
+          {user === null && (
             <RegLog>
               <Link to="/register">
                 <MenuItem>Register</MenuItem>
@@ -44,6 +54,11 @@ function Navbar() {
                 <MenuItem>Login</MenuItem>
               </Link>
             </RegLog>
+          )}
+          {user !== null && (
+            <Logout style={{ cursor: "pointer" }} onClick={handleLogout}>
+              [logout]
+            </Logout>
           )}
           <Icon>
             <Search onClick={() => setShowSearch(true)} />
@@ -72,7 +87,14 @@ function Navbar() {
         <li>
           <Link to="/products">Categories</Link>
         </li>
-        {!user && (
+        {user !== null && (
+          <li>
+            <Link to="/" onClick={handleLogout}>
+              [Logout]
+            </Link>
+          </li>
+        )}
+        {user === null && (
           <>
             <li>
               <Link to="/login">Login</Link>
@@ -157,6 +179,12 @@ const SearchIcon = styled.div`
 `;
 
 const RegLog = styled.div`
+  display: flex;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+`;
+const Logout = styled.a`
   display: flex;
   @media only screen and (max-width: 600px) {
     display: none;

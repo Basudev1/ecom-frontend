@@ -12,6 +12,7 @@ function Login() {
     e.preventDefault();
     login(dispatch, { email, password });
   };
+  console.log(error);
   return (
     <Container>
       <Wrapper>
@@ -30,7 +31,7 @@ function Login() {
           <Button onClick={handleLogin} disabled={isFetching}>
             Login
           </Button>
-          {error && <Error>Something went wrong</Error>}
+          {error && <Error>Something went wrong, try login again</Error>}
         </Form>
         <Links>
           <Link to="/">Forgot Password</Link>
