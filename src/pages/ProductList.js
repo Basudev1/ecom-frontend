@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
+// import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import NewsLetter from "../components/NewsLetter";
@@ -22,7 +22,7 @@ function ProductList() {
   // console.log(filters);
   return (
     <Container>
-      <Announcement />
+      {/* <Announcement /> */}
       <Navbar />
       <Title>{cat}</Title>
       <FilterContainer>

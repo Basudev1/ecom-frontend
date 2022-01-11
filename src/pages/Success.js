@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { CheckCircle } from "@material-ui/icons";
 function Success() {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   return (
     <Container>
       <Wrapper>

@@ -7,6 +7,7 @@ import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 import { useSelector } from "react-redux";
 import Success from "./pages/Success";
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/product:id" element={<Product />} />
         </Route>
         <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>

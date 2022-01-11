@@ -1,7 +1,7 @@
 import { Add, Remove } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
+// import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
@@ -44,7 +44,7 @@ function Product() {
   };
   return (
     <Container>
-      <Announcement />
+      {/* <Announcement /> */}
       <Navbar />
       <Wrapper>
         <ImgContainer>
@@ -69,7 +69,9 @@ function Product() {
               <FilterTitle>Size</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((s) => (
-                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                  <FilterSizeOption size={s} key={s}>
+                    {s}
+                  </FilterSizeOption>
                 ))}
               </FilterSize>
             </Filter>

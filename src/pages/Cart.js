@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { userRequest } from "../requestMethods";
 import { Link, useNavigate } from "react-router-dom";
-import { removeProduct } from "../redux/cartRedux";
+import { removeProduct, removeAll } from "../redux/cartRedux";
 const KEY = process.env.REACT_APP_STRIPE_KEY;
 function Cart() {
   const user = localStorage.getItem("Authorization");
@@ -39,6 +39,7 @@ function Cart() {
           amount: cart.total,
           address: "Dev.to",
         });
+        dispatch(removeAll());
         navigate(`/success/`, { data: response.data });
         // console.log(stripeToken);
       } catch (error) {
