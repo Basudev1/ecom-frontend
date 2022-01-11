@@ -57,9 +57,18 @@ function Navbar() {
             </RegLog>
           )}
           {user !== null && (
-            <Logout style={{ cursor: "pointer" }} onClick={handleLogout}>
-              [logout]
-            </Logout>
+            <>
+              <Link style={{ textDecoration: "none" }} to="/orders">
+                <Logout
+                  style={{ marginRight: 10, fontFamily: "bold", fontSize: 17 }}
+                >
+                  My Orders
+                </Logout>
+              </Link>
+              <Logout style={{ cursor: "pointer" }} onClick={handleLogout}>
+                [logout]
+              </Logout>
+            </>
           )}
           <Icon>
             <Search onClick={() => setShowSearch(true)} />
@@ -89,11 +98,16 @@ function Navbar() {
           <Link to="/products">Categories</Link>
         </li>
         {user !== null && (
-          <li>
-            <Link to="/" onClick={handleLogout}>
-              [Logout]
-            </Link>
-          </li>
+          <>
+            <li>
+              <Link to="/orders">My Orders</Link>
+            </li>
+            <li>
+              <Link to="/" onClick={handleLogout}>
+                [Logout]
+              </Link>
+            </li>
+          </>
         )}
         {user === null && (
           <>
