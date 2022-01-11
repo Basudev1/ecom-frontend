@@ -49,10 +49,15 @@ function Cart() {
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, navigate]);
   const dispatch = useDispatch();
-  const removeItem = (p) => {
-    const product = cart.products.find((product) => product._id === p);
-    // dispatch(removeProduct({ p, quantity }));
-    console.log(product._id);
+  const removeItem = (product) => {
+    // const product = cart.products.find((product) => product._id === p);
+    // dispatch(removeProduct({ ...product, product, quantity }));
+    // dispatch(removeProduct({ product }));
+    console.log(product);
+  };
+
+  const removeALL = () => {
+    dispatch(removeAll());
   };
 
   return (
@@ -71,7 +76,9 @@ function Cart() {
             <TopText>Shopping Bag({quantity})</TopText>
             <TopText>Your Wishlist(0)</TopText>
           </TopTexts>
-          <TopButton type="filled">Check Out Now</TopButton>
+          <TopButton type="filled" onClick={removeALL}>
+            Remove All
+          </TopButton>
         </Top>
         <Bottom>
           <Info>

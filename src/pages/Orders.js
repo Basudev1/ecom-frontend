@@ -1,16 +1,31 @@
 import { style } from "@mui/system";
+import { useEffect, useState } from "react";
 import React from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
+import { userRequest } from "../requestMethods";
 function History() {
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await userRequest.get("/orders");
+        setProduct(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProduct();
+  }, []);
   return (
     <Container>
       <Navbar />
       <Top>
         <Title>Order History</Title>
-        <Products>Products</Products>
+        <Products>Products | Workin on This Page</Products>
       </Top>
       <Wrapper>
         <ProductDetail>
