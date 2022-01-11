@@ -13,77 +13,192 @@ function History() {
       try {
         const res = await userRequest.get("/orders");
         setProduct(res.data);
-        let products = JSON.stringify(res.data);
+        // let products = JSON.stringify(res.data);
 
-        console.log(products);
-        console.log(res.data[0].products[0].productid);
+        // console.log(products);
+        // console.log(res.data[0].products[0].productid);
       } catch (error) {
         console.log(error);
       }
     };
     getProduct();
   }, []);
+
+  //
+  // populate through json
+  //map the data
+  // let data = [
+  //   {
+  //     _id: "61dd81c0750a1f2cc099500d",
+  //     userId: "61d53f256a5e205903b86f3c",
+  //     products: [
+  //       {
+  //         productid: "61d54f11b0f0bbd8babef2aa",
+  //         quantity: 1,
+  //         _id: "61dd81c0750a1f2cc099500e",
+  //       },
+  //       {
+  //         productid: "61d54f21b0f0bbd8babef2ac",
+  //         quantity: 1,
+  //         _id: "61dd81c0750a1f2cc099500f",
+  //       },
+  //       {
+  //         productid: "61d54f61470ec3422aa2b411",
+  //         quantity: 1,
+  //         _id: "61dd81c0750a1f2cc0995010",
+  //       },
+  //     ],
+  //     amount: 60,
+  //     address: "Dev.to",
+  //     status: "pending",
+  //     createdAt: "2022-01-11T13:10:24.973Z",
+  //     updatedAt: "2022-01-11T13:10:24.973Z",
+  //     __v: 0,
+  //   },
+  //   {
+  //     _id: "61dd842b750a1f2cc099501d",
+  //     userId: "61d53f256a5e205903b86f3c",
+  //     products: [
+  //       {
+  //         productid: "61d54f61470ec3422aa2b411",
+  //         quantity: 2,
+  //         _id: "61dd842b750a1f2cc099501e",
+  //       },
+  //     ],
+  //     amount: 40,
+  //     address: "Dev.to",
+  //     status: "pending",
+  //     createdAt: "2022-01-11T13:20:43.235Z",
+  //     updatedAt: "2022-01-11T13:20:43.235Z",
+  //     __v: 0,
+  //   },
+  //   {
+  //     _id: "61dd99fab4a14db4aee09764",
+  //     userId: "61d53f256a5e205903b86f3c",
+  //     products: [
+  //       {
+  //         productid: "61d54f61470ec3422aa2b411",
+  //         img: "https://rukminim1.flixcart.com/image/880/1056/kwdv3bk0/kurta/c/4/0/m-863-blue-jaffry-embroidery-original-imag92nnqzyjmhyw.jpeg",
+  //         quantity: 1,
+  //         _id: "61dd99fab4a14db4aee09765",
+  //       },
+  //     ],
+  //     amount: 20,
+  //     address: "Dev.to",
+  //     status: "pending",
+  //     createdAt: "2022-01-11T14:53:46.909Z",
+  //     updatedAt: "2022-01-11T14:53:46.909Z",
+  //     __v: 0,
+  //   },
+  //   {
+  //     _id: "61dd9a67b4a14db4aee09771",
+  //     userId: "61d53f256a5e205903b86f3c",
+  //     products: [
+  //       {
+  //         productid: "61d54f21b0f0bbd8babef2ac",
+  //         img: "https://rukminim1.flixcart.com/image/880/1056/kwtkxow0/sweatshirt/j/n/r/8-9-years-d-s-105-dagcros-original-imag9exjzxtm6cqz.jpeg",
+  //         quantity: 1,
+  //         _id: "61dd9a67b4a14db4aee09772",
+  //       },
+  //       {
+  //         productid: "61d6b0599d687950cbd5465b",
+  //         img: "https://images.meesho.com/images/products/19395873/6b381_512.jpg",
+  //         quantity: 1,
+  //         _id: "61dd9a67b4a14db4aee09773",
+  //       },
+  //     ],
+  //     amount: 40,
+  //     address: "Dev.to",
+  //     status: "pending",
+  //     createdAt: "2022-01-11T14:55:35.387Z",
+  //     updatedAt: "2022-01-11T14:55:35.387Z",
+  //     __v: 0,
+  //   },
+  // ];
+
+  // populate thriugh json
+  // let data = [
+  //   {
+  //     _id: "61ddaf19e7a6f55e509c5360",
+  //     userId: "61d53f256a5e205903b86f3c",
+  //     products: [
+  //       {
+  //         productid: "61d54f11b0f0bbd8babef2aa",
+  //         title: "Skull Cap Men Winter",
+  //         img: "https://rukminim1.flixcart.com/image/880/1056/kws5hu80/cap/z/a/y/free-unisex-black-woolen-winter-beanie-cap-with-scarf-for-men-original-imag9dw2xfkwcxzb.jpeg",
+  //         quantity: 1,
+  //         _id: "61ddaf19e7a6f55e509c5361",
+  //       },
+  //       {
+  //         productid: "61d54f21b0f0bbd8babef2ac",
+  //         title: "Puma tshirts",
+  //         img: "https://rukminim1.flixcart.com/image/880/1056/kwtkxow0/sweatshirt/j/n/r/8-9-years-d-s-105-dagcros-original-imag9exjzxtm6cqz.jpeg",
+  //         quantity: 1,
+  //         _id: "61ddaf19e7a6f55e509c5362",
+  //       },
+  //     ],
+  //     amount: 40,
+  //     address: "Dev.to",
+  //     status: "pending",
+  //     createdAt: "2022-01-11T16:23:53.229Z",
+  //     updatedAt: "2022-01-11T16:23:53.229Z",
+  //     __v: 0,
+  //   },
+  // ];
+  // map the data products
+  // write a function to map through the data
+  let productsList = [];
+  for (let i = 0; i < product.length; i++) {
+    let products = product[i].products;
+
+    for (let j = 0; j < products.length; j++) {
+      // console.log(products[j]);
+      productsList.push(products[j]);
+    }
+  }
+  // console.log(productsList);
+  //
   return (
     <Container>
       <Navbar />
       <Top>
         <Title>Order History</Title>
-        <Products>Products | Workin on This Page</Products>
+        <Products>Your Ordered Products</Products>
       </Top>
       <Wrapper>
-        <ProductDetail>
-          <Image src="https://rukminim1.flixcart.com/image/880/1056/kws5hu80/cap/z/a/y/free-unisex-black-woolen-winter-beanie-cap-with-scarf-for-men-original-imag9dw2xfkwcxzb.jpeg" />
-          <Detail>
-            <ProductName>
-              <b>Product:</b> Skull Cap
-            </ProductName>
-            {/* <ProductId>
+        {productsList.map((product) => (
+          <>
+            <ProductDetail key={product.productid}>
+              <Image src={product.img} />
+              <Detail>
+                <ProductName>
+                  <b>Product:</b> {product.title}
+                </ProductName>
+                {/* <ProductId>
               <b>ProductId:</b> 23456789
             </ProductId> */}
-            <ProductColor>
-              {" "}
-              <b>Product Color: </b>Black
-            </ProductColor>
-            <ProductSize>
-              <b>Product Size: </b>M
-            </ProductSize>
-          </Detail>
-        </ProductDetail>
-        <Details>
-          <ProductName>
-            <b>Status:</b> Pending
-          </ProductName>
-          <ProductId>
-            <b>Order On:</b> 30days ago
-          </ProductId>
-        </Details>
-        <Hr />
-        <ProductDetail>
-          <Image src="https://rukminim1.flixcart.com/image/880/1056/kws5hu80/cap/z/a/y/free-unisex-black-woolen-winter-beanie-cap-with-scarf-for-men-original-imag9dw2xfkwcxzb.jpeg" />
-          <Detail>
-            <ProductName>
-              <b>Product:</b> Skull Cap
-            </ProductName>
-            {/* <ProductId>
-              <b>ProductId:</b> 23456789
-            </ProductId> */}
-            <ProductColor>
-              {" "}
-              <b>Product Color: </b>Black
-            </ProductColor>
-            <ProductSize>
-              <b>Product Size: </b>M
-            </ProductSize>
-          </Detail>
-        </ProductDetail>
-        <Details>
-          <ProductName>
-            <b>Status:</b> Pending
-          </ProductName>
-          <ProductId>
-            <b>Order On:</b> 30days ago
-          </ProductId>
-        </Details>
+                <ProductColor>
+                  {" "}
+                  <b>Product Id: </b>
+                  {product.productid}
+                </ProductColor>
+                {/* <ProductSize>
+                  <b>Product Size: </b>M
+                </ProductSize> */}
+              </Detail>
+            </ProductDetail>
+            <Details>
+              <ProductName>
+                <b>Status:</b> Pending
+              </ProductName>
+              <ProductId>
+                <b>Order On:</b> {product.createdAt}
+              </ProductId>
+            </Details>
+            <Hr />
+          </>
+        ))}
+
         <Hr />
       </Wrapper>
       <NewsLetter />

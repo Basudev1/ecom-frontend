@@ -22,7 +22,9 @@ function Cart() {
 
   const product = cart.products.map((x) => ({
     productid: x._id,
+    title: x.title,
     quantity: x.quantity,
+    img: x.img,
   }));
   // console.log(product);
 
