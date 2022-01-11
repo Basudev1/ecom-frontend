@@ -20,9 +20,14 @@ function Success() {
           will receive your Product Very Soon
         </Desc>
         <Continue>
-          <ContBtn>
+          <ContBtn style={{ marginBottom: 10 }}>
             <Link style={{ textDecoration: "none" }} to="/">
               Contine Shopping
+            </Link>
+          </ContBtn>
+          <ContBtn>
+            <Link style={{ textDecoration: "none" }} to="/orders">
+              View Orders
             </Link>
           </ContBtn>
         </Continue>

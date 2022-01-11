@@ -13,7 +13,10 @@ function History() {
       try {
         const res = await userRequest.get("/orders");
         setProduct(res.data);
-        console.log(res.data);
+        let products = JSON.stringify(res.data);
+
+        console.log(products);
+        console.log(res.data[0].products[0].productid);
       } catch (error) {
         console.log(error);
       }

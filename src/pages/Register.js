@@ -1,21 +1,62 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../redux/apiCalls";
 function Register() {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+  const { isFetching, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === cpassword) {
+      // alert("password match");.
+      console.log(username, email, password);
+      register(dispatch, { username, email, password });
+    } else {
+      alert("password not match");
+      setPassword("");
+      setCpassword("");
+    }
+  };
+  console.log(error);
+
   return (
     <Container>
       <Wrapper>
+        {error && (
+          <span style={{ color: "red" }}>Something went wrong, try again</span>
+        )}
         <Title>Create An Account</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="Confirm Password" />
+          <Input
+            placeholder="name"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="email"
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Confirm Password"
+            onChange={(e) => setCpassword(e.target.value)}
+          />
           <Agreement>
             By Creating an Account, I agree to the terms and conditions of the
             site., I also agree to Not to input any real payment information in
             this site.
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleLogin}>CREATE</Button>
         </Form>
       </Wrapper>
     </Container>
