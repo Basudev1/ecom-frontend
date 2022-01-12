@@ -1,6 +1,7 @@
 # Getting Started with Create React App
+![frontend](frontend.png)
 
-This is a part of the Full Stack MERN app created for Mongodb Hackathon
+## This is a part of the Full Stack MERN app created for Mongodb Hackathon
 
 This Project Contains the Frontend for the app
 
