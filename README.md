@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+This is a part of the Full Stack MERN app created for Mongodb Hackathon
+
+This Project Contains the Frontend for the app
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
